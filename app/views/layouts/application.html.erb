@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EnWealthy</title>
+    <title>en:Wealthy</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,15 @@
   </head>
 
   <body>
+    <!-- ヘッダー-->
+    <div>
+      <%= render "layouts/header" %>
+    </div>
+    
     <%= yield %>
+    
+    
+    <!-- フッター-->
+    <%= render "layouts/footer" %>
   </body>
 </html>
