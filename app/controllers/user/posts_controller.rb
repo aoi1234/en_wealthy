@@ -4,46 +4,27 @@ class User::PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = Post.all.order(created_at: :desc)
-    @banners = Banner.all
-    @following_posts= Post.where(user_id: [*current_user.following_ids]).order(created_at: :desc)    
   end
   
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @banners = Banner.all
-  
-    # 画像がある場合のみタグを取得
-    if post_params[:image].present?
-      tags = Vision.get_image_data(post_params[:image])
-    end
-  
+    
     if @post.save
-      # 画像があり、タグが取得されている場合のみタグを関連付け
-      if tags.present?
-        tags.each do |tag|
-          @post.tags.find_or_create_by(name: tag)
-        end
-      end
-      redirect_to post_path(@post)
+      redirect_to post_path
     else
       @user = current_user
       @posts = Post.all
+      flash.now[:alert] = '投稿が更新されませんでした。'
       render :index
     end
   end
   
   def show
-    @post_detail = Post.find(params[:id])
-    unless ViewCount.find_by(user_id: current_user.id, post_id: @post_detail.id)
-      current_user.view_counts.create(post_id: @post_detail.id)
-    end
     @post = Post.find(params[:id])
     @user = @post.user
     @new_post = Post.new
     @post_comment = PostComment.new
-    @post_json = @post.attributes.symbolize_keys.select { |k, v| k.match(/id|shop|address|latitude|longitude/) }.to_json
-    @banners = Banner.all
   end
   
   def destroy
@@ -53,16 +34,15 @@ class User::PostsController < ApplicationController
   end
   
   def edit
-    @post = Post.find(params[:id])
-    @banners = Banner.all
+    @post = Post.find(params[:id]) 
   end
   
   def update
     @post = Post.find(params[:id])
-    @banners = Banner.all
     if @post.update(post_params)
       redirect_to post_path(@post.id)
     else
+      flash.now[:alert] = 'updateできませんでした'
       render :edit
     end
   end
@@ -70,12 +50,13 @@ class User::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :shop, :caption, :category, :address)
+    params.require(:post).permit(:image, :caption, :category)
   end
   
   def ensure_correct_user
     post = Post.find(params[:id])
     unless post.user_id == current_user.id
+      flash[:notice] = "権限がありません"
       redirect_to posts_path
     end
   end
