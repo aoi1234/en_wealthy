@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2024_07_06_124558) do
     t.integer "user_id"
     t.text "title"
     t.text "body"
-    t.text "caption"
+    t.text "industry"
     t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -116,12 +116,12 @@ ActiveRecord::Schema.define(version: 2024_07_06_124558) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.text "introduction"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.text "introduction", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

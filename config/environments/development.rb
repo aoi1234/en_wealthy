@@ -75,4 +75,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts << "0cf8d1a9b7224049a8f2c0d6371f1c16.vfs.cloud9.ap-northeast-1.amazonaws.com"
   config.active_job.queue_adapter = :inline
+  config.middleware.delete(Rack::MiniProfiler)
+  config.log_level = :info  # または :warn など、より低いログレベルを選択
 end

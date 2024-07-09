@@ -27,20 +27,21 @@ Rails.application.routes.draw do
   #get "/search", to: "user/searches#search"
   #get 'posts/show' => 'user/posts#show'
     scope module: :user do
-      resources :posts, only: [:index, :create, :show, :edit, :update, :destroy] do
-      resources :post_comments, only: [:create, :destroy]
-      resource :favorites, only: [:create, :destroy]
+      resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+        resources :post_comments, only: [:create, :destroy]
+        resource :favorites, only: [:create, :destroy]
       end
+      resources :users, only: [:index, :show, :update, :edit, :destroy]
     end
-    
+
   namespace :user do
     get 'homes/about'
   end
-  
+
   #管理者用
   namespace :admin do
     root to: 'homes#top'
   end
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,8 +1,11 @@
 class User::PostsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
-  def index
+  def new
     @post = Post.new
+  end
+
+  def index
     @posts = Post.all.order(created_at: :desc)
   end
 
@@ -12,7 +15,7 @@ class User::PostsController < ApplicationController
     @post.user_id = current_user.id
 
     if @post.save
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: '投稿が更新されました。'
     else
       @user = current_user
       @posts = Post.all
@@ -31,7 +34,7 @@ class User::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, notice: '投稿が削除されました。'
   end
 
   def edit
@@ -41,17 +44,18 @@ class User::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post.id)
+      redirect_to post_path(@post.id), notice: '更新されました。'
     else
-      flash.now[:alert] = 'updateできませんでした'
+      flash[:alert] = '更新できませんでした。'
       render :edit
     end
   end
 
+
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :caption, :category) 
+    params.require(:post).permit(:title, :body, :industry, :category)
   end
 
   def ensure_correct_user
