@@ -6,13 +6,6 @@ class User::RegistrationsController < Devise::RegistrationsController
     posts_path
   end
   
-  def destroy
-    resource.destroy
-    set_flash_message :notice, :destroyed
-    yield resource if block_given?
-    respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
-  end
-  
   protected
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params

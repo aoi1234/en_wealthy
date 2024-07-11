@@ -22,7 +22,7 @@
       |
       <%= link_to "ポスト一覧", posts_path, class: "btn btn-secondary", style: "padding: 0.5rem 1rem; font-size: 1.4rem;" %>
       <div style="margin-top: 10px;">
-        <%= link_to "退会", destroy_user_session_path(@user), method: :delete, data: { confirm: "本当に退会しますか？" }, class: "btn btn-secondary", style: "padding: 0.5rem 1rem; font-size: 1.4rem;" %>
+        <%= link_to "退会", user_path(current_user.id), method: :delete, data: { confirm: "本当に退会しますか？" }, class: "btn btn-secondary", style: "padding: 0.5rem 1rem; font-size: 1.4rem;" %>
       </div>
     </div>
   </div>
