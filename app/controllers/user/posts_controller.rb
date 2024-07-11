@@ -32,9 +32,13 @@ class User::PostsController < ApplicationController
   end
 
   def destroy
-    post = Post.find(params[:id])
-    post.destroy
-    redirect_to posts_path, notice: '投稿が削除されました。'
+    @post = Post.find(params[:id])
+    if @post.user_id == current_user.id
+      @post.destroy
+      redirect_to posts_path, notice: '投稿が削除されました。'
+    else
+      redirect_to posts_path, notice: '自分の投稿以外削除できません'
+    end
   end
 
   def edit
@@ -59,9 +63,9 @@ class User::PostsController < ApplicationController
   end
 
   def ensure_correct_user
-    post = Post.find(params[:id])
-    unless post.user_id == current_user.id
-      flash[:notice] = "権限がありません"
+    @post = Post.find(params[:id])
+    unless @post.user_id == current_user.id
+      flash[:danger] = "権限がありません"
       redirect_to posts_path
     end
   end
