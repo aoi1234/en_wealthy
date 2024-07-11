@@ -10,4 +10,8 @@ class Post < ApplicationRecord
   validates :body, length: { in: 1..150 }
   validates :industry, length: { in: 1..50 }
   validates :category, length: { in: 1..50 }
+  
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 end

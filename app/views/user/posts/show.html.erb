@@ -7,6 +7,8 @@
     <span><%= @post.industry %></span>
   <p>カテゴリー</p>
     <span><%= @post.category %></span>
+  <td><%= render "user/favorites/btn", post: @post %></td>
+  <td>コメント数： <%= @post.post_comments.count %></td>
   <% if @post.user == current_user %>
     <div style="margin-top: 10px;">
       <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-secondary", style: "padding: 0.5rem 1rem; font-size: 1.4rem;" %>
@@ -14,3 +16,5 @@
     </div>
   <% end %>
   
+  <%= render "user/post_comments/index", post: @post %>
+  <%= render "user/post_comments/form", post: @post, post_comment: @post_comment %>

@@ -13,6 +13,6 @@
   <h4>カテゴリー</h4>
   <%= f.text_field :category %>
   
-  <%= f.submit '保存' %>
+  <%= f.submit '保存' %><%= link_to "戻る", post_path(@post.id), class: "btn btn-secondary", style: "margin-left: 5px; padding: 0.3rem 0.5rem; font-size: 1rem;" %>
   
 <% end %>

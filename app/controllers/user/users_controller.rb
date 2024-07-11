@@ -1,14 +1,15 @@
 class User::UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :is_matching_login_user, only: [:edit, :update]
 
   def index
     @users = User.all
     @user = current_user
-    @book = Book.new
   end
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.order(created_at: :desc)
   end
 
   def edit
@@ -25,8 +26,8 @@ class User::UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    user.destroy
+    @user = User.find(params[:id])
+    @user.destroy
     redirect_to root_path, notice: 'またのご利用お待ちしております。'
   end
 
@@ -37,8 +38,8 @@ class User::UsersController < ApplicationController
   end
 
   def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
+    @user = User.find_by(:id => params[:id])
+    unless @user.id == current_user.id
     redirect_to user_path(current_user.id)
     end
   end

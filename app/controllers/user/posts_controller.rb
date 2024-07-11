@@ -10,12 +10,10 @@ class User::PostsController < ApplicationController
   end
 
   def create
-
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-
     if @post.save
-      redirect_to post_path(@post), notice: '投稿が更新されました。'
+      redirect_to user_path(@post.user_id), notice: '投稿が更新されました。'
     else
       @user = current_user
       @posts = Post.all
@@ -32,10 +30,10 @@ class User::PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    if @post.user_id == current_user.id
-      @post.destroy
-      redirect_to posts_path, notice: '投稿が削除されました。'
+    post = Post.find(params[:id])
+    if post.user_id == current_user.id
+      post.destroy
+      redirect_to user_path(post.user_id), notice: '投稿が削除されました。'
     else
       redirect_to posts_path, notice: '自分の投稿以外削除できません'
     end

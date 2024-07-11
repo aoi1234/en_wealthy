@@ -18,6 +18,8 @@
           <p class="card-text">カテゴリー：<%= post.category %></p>
           <span><i class="fas fa-user"></i> By <%= post.user.name %> ｜ </span>
           <span><%#= link_to "#{post.post_comments.count} コメント", post_path(post.id), class: "text-dark" %></span>
+          <td><%= render "user/favorites/btn", post: post %></td>
+          <td>コメント数： <%= post.post_comments.count %></td>
         </div>
       </div>
     </div>
