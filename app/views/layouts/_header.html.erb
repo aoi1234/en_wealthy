@@ -12,9 +12,10 @@
               ようこそ、<%= current_user.name %>さん！
             </li>
             <!-- Userがログインしている時 -->
-            <a href="<%= user_path(current_user) %>" class="btn btn-border-shadow btn-border-shadow--color2">マイページ</a>
             <a href="<%= posts_path %>" class="btn btn-border-shadow btn-border-shadow--color2">ホーム</a>
+            <a href="<%= user_path(current_user) %>" class="btn btn-border-shadow btn-border-shadow--color2">マイページ</a>
             <a href="<%= new_post_path %>" class="btn btn-border-shadow btn-border-shadow--color2">ポスト</a>
+            <a href="<%= posts_path %>" class="btn btn-border-shadow btn-border-shadow--color2">ブックマーク</a>
             <a href="<%= user_homes_about_path %>" class="btn btn-border-shadow btn-border-shadow--color2">概要</a>
             <a href="<%= destroy_user_session_path %>" data-method="delete" class="btn btn-border-shadow btn-border-shadow--color2">ログアウト</a>
 
