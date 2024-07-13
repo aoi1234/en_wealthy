@@ -34,7 +34,7 @@ class User::PostsController < ApplicationController
     post = Post.find(params[:id])
     if post.user_id == current_user.id
       post.destroy
-      redirect_to user_path(post.user_id), notice: '投稿が削除されました。'
+      redirect_to posts_path(post.user_id), notice: '投稿が削除されました。'
     else
       redirect_to posts_path, notice: '自分の投稿以外削除できません'
     end

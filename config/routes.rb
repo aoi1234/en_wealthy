@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   #顧客用
   root to: 'user/homes#top'
   get 'home/about' => 'user/homes#about', as: 'about'
-  #get "/search", to: "user/searches#search"
+  get "/search", to: "user/searches#search"
   #get 'posts/show' => 'user/posts#show'
     scope module: :user do
       resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
