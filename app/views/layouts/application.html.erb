@@ -7,20 +7,33 @@
     <%= csp_meta_tag %>
 
     <script src="https://kit.fontawesome.com/1f851bdcdd.js" crossorigin="anonymous"></script>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body style="width: 96%; margin: 0 auto;">
     <!-- ヘッダー-->
-    <div>
-      <%= render "layouts/header" %>
-    </div>
+
+    <%= render "layouts/header" %>
     <main>
       <% flash.each do |message_type, message| %>
         <div class="flash-message <%= message_type %>"><%= message %></div>
       <% end %>
-      <%= yield %>
+      <% if current_user %>
+      <div style="display: flex;"> 
+        <div class="sidebar">
+          <%= link_to "HOME", posts_path, class: "sidebar_link"%>
+          <%= link_to "マイページ", user_path(current_user), class: "sidebar_link"%>
+          <%= link_to "ポスト",  new_post_path, class: "sidebar_link"%>
+          <%= link_to "ブックマーク", user_path(current_user, from_bookmark: true),  class: "sidebar_link", data: { turbolinks: false } %>
+          <%= link_to "概要", user_homes_about_path, class: "sidebar_link"%>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "sidebar_link"%>
+      <% else %>
+      <% end %>
+
+        </div>
+          <%= yield %>
+      </div>
     </main>
     
     <!-- フッター-->

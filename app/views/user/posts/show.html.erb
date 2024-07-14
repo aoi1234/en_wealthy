@@ -1,20 +1,23 @@
-<h1>詳細画面</h1>
-  <p>タイトル</p>
-    <span><%= @post.title %></span>
-  <p>本文</p>
-    <span><%= @post.body %></span>
-  <p>業種</p>
-    <span><%= @post.industry %></span>
-  <p>カテゴリー</p>
-    <span><%= @post.category %></span>
-  <td><%= render "user/favorites/btn", post: @post %></td>
-  <td>コメント数： <%= @post.post_comments.count %></td>
-  <% if @post.user == current_user %>
-    <div style="margin-top: 10px;">
-      <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-secondary", style: "padding: 0.5rem 1rem; font-size: 1.4rem;" %>
-      <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-secondary", style: "padding: 0.5rem 1rem; font-size: 1.4rem;" %>
-    </div>
-  <% end %>
-  
-  <%= render "user/post_comments/index", post: @post %>
-  <%= render "user/post_comments/form", post: @post, post_comment: @post_comment %>
+<div class="new_posts">
+  <h1>詳細画面</h1>
+    <p>タイトル</p>
+      <span><%= @post.title %></span>
+    <p>本文</p>
+      <span><%= @post.body %></span>
+    <p>業種</p>
+      <span><%= @post.industry %></span>
+    <p>カテゴリー</p>
+      <span><%= @post.category %></span>
+    <td><%= render "user/favorites/btn", post: @post %></td>
+    <td>コメント数： <%= @post.post_comments.count %></td>
+    <% if @post.user == current_user %>
+      <div style="margin-top: 10px;">
+        <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-secondary", style: "padding: 0.5rem 0.7rem; font-size: 1rem;" %>
+        <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-secondary", style: "padding: 0.5rem 0.7rem; font-size: 1rem;" %>
+      </div>
+    <% end %>
+  <div style="margin-top: 10px">
+    <%= render "user/post_comments/index", post: @post %>
+    <%= render "user/post_comments/form", post: @post, post_comment: @post_comment %>
+  </div>
+</div>

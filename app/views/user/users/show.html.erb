@@ -1,83 +1,82 @@
-<h1>マイページ</h1>
-<h4>プロフィール</h4>
-<%= image_tag @user.get_profile_image(100,100) %>
-<table class="table">
- <tbody>
-    <tr></tr>
+<div class="my_page1">
+  <h4>プロフィール</h4>
+  <%= image_tag @user.get_profile_image(80,80) %>
+  <table class="table">
+   <tbody>
+      <tr>
+        <th scope="row">名前</th>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th scope="row">自己紹介</th>
+        <td><%= @user.introduction %></td>
+      </tr>
+    </tbody>
+  </table>
     <tr>
-      <th scope="row">名前</th>
-      <td><%= @user.name %></td>
+      <th><%= link_to @user.followings.count, user_followings_path(@user) %></th>
+      <th>フォロー</th>
     </tr>
     <tr>
-      <th scope="row">自己紹介</th>
-      <td><%= @user.introduction %></td>
+      <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
+      <th>フォロワー</th>
     </tr>
-  </tbody>
-</table>
-<tr>
-    <th>follows</th>
-    <th><%= link_to @user.followings.count, user_followings_path(@user) %></th>
-  </tr>
-  <tr>
-    <th>followers</th>
-    <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
-  </tr>
-  <div class="row">
-  <% if current_user != @user %>
-    <td><%= render "user/relationships/btn", user: @user, options: { class: "follow-link" } %></td>
-  <% else %>
-    <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
-      <i class="fas fa-user-cog"></i>
-    <% end %>
-  <% end %>
-  <div style="margin-left: 10px;">
-    <% unless @user.id == current_user.id %>
-      <% if (current_user.following? @user) && (@user.following? current_user)  %>
-        <%# if isRoom == true %>
-          <p class="btn btn-secondary", style: "margin-left: 5px; height: 20px; padding: 0.3rem 0.5rem; font-size: 1rem;" >チャットへ</p>
-        <% else %>
-          <%= form_for room do |f| %>
-            <%= fields_for entry do |e| %>
-              <%= e.hidden_field :user_id, value: user.id %>
-            <% end %>
-            <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat", style: "margin-left: 5px; height: 20px; padding: 0.3rem 0.5rem; font-size: 1rem;" %>
-          <% end %>
-        <%# end %>
+    <div class="setting_btn">
+      <% if current_user != @user %>
+        <td><%= render "user/relationships/btn", user: @user, options: { class: "follow-link" } %></td>
+      <% else %>
+        <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+    <div style="margin-left: 10px;">
+      <% unless @user.id == current_user.id %>
+        <% if (current_user.following? @user) && (@user.following? current_user)  %>
+          <% if @isRoom == true %>
+            <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary", style:"margin-left: 5px; height: 20px; padding: 0.3rem 0.5rem; font-size: 1rem;" >チャットへ</a>
+          <% else %>
+            <%= form_for @room do |f| %>
+              <%= fields_for @entry do |e| %>
+                <%= e.hidden_field :user_id, value: @user.id %>
+              <% end %>
+              <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat", style:"margin-left: 5px; height: 20px; padding: 0.3rem 0.5rem; font-size: 1rem;" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
 </div>
 
-<div class="container mt-4">
-  <ul class="nav nav-tabs nav-fill" role="tablist" id="tags">
-    <li class="nav-item">
-      <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">投稿一覧</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">Favorites</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="item3-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="false">Item#3</a>
-    </li>
-  </ul>
-</div>
-  <div class="tab-content">
-    <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
-      <% if @posts.any? %>
-        <%= render 'user/posts/posts', posts: @posts %>
-      <% else %>
-        <p>投稿が見つかりません。</p>
-      <% end %> 
-    </div>
-    <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
-      <% if @favorite_posts.any? %>
-        <%= render 'user/posts/posts', posts: @favorite_posts %>
-      <% else %>
-        <p>投稿が見つかりません。</p>
-      <% end %> 
-    </div>
-    <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">This is a text of item#3.</div>
+<div class="my_page2">
+  <div style= "width: 75%; margin:0 auto;">
+    <ul class="nav nav-tabs nav-fill" role="tablist" id="tags">
+      <li class="nav-item">
+        <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">投稿一覧</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">Favorites</a>
+      </li>
+    </ul>
   </div>
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+        <% if @posts.any? %>
+          <%= render 'user/posts/posts', posts: @posts %>
+        <% else %>
+          <p>投稿が見つかりません。</p>
+        <% end %> 
+      </div>
+      <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
+        <% if @favorite_posts.any? %>
+          <%= render 'user/posts/posts', posts: @favorite_posts %>
+        <% else %>
+          <p>投稿が見つかりません。</p>
+        <% end %> 
+      </div>
+      <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">This is a text of item#3.</div>
+    </div>
+</div>
 
 
 <% if params[:from_bookmark].present? %>

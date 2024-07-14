@@ -1,36 +1,23 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav style="display: flex;">
     
-      <a class="navbar-brand"><span>en:Wealthy</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item">
-              ようこそ、<%= current_user.name %>さん！
-            </li>
-            <!-- Userがログインしている時 -->
-            <a href="<%= posts_path %>" class="btn btn-border-shadow btn-border-shadow--color2">ホーム</a>
-            <a href="<%= user_path(current_user) %>" class="btn btn-border-shadow btn-border-shadow--color2">マイページ</a>
-            <a href="<%= new_post_path %>" class="btn btn-border-shadow btn-border-shadow--color2">ポスト</a>
-            <%= link_to "ブックマーク", user_path(current_user, from_bookmark: true), class: "btn btn-border-shadow btn-border-shadow--color2", data: { turbolinks: false } %>
-            <a href="<%= user_homes_about_path %>" class="btn btn-border-shadow btn-border-shadow--color2">概要</a>
-            <a href="<%= destroy_user_session_path %>" data-method="delete" class="btn btn-border-shadow btn-border-shadow--color2">ログアウト</a>
-
-<% elsif admin_signed_in? %>
-
+      <div class="logo">
+        <a class=""><span>en:Wealthy</span></a>
+      </div> 
+      
+      <div class="search_form_container">
+         <%= render "user/searches/new_form" %>
+      </div>
+      
+      <div class="header_buttons">
+       <% if user_signed_in? %>
+        <%= link_to "ポスト", new_post_path, class: "btn btn-primary ", style: "list-style: none;" %>
+       <% elsif admin_signed_in? %>
             <!-- 管理者がログインしている時 -->
-
             <li class="nav-item"><%= link_to "About", user_homes_about_path, class: "btn btn-outline-warning text-dark"  %></li>
             <li class="nav-item"><%= link_to "Log out", destroy_admin_session_path, class: "btn btn-outline-warning text-dark" , method: :delete %></li>
         <% end %>
-          <div class="d-flex justify-content-center mb-2">
-          <%= render "user/searches/form" %>
-          </div>
-        </ul>
       </div>
-    </div>
+      
   </nav>
 </header>

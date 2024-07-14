@@ -1,1 +1,85 @@
 @use '~bootstrap/scss/bootstrap';
+
+
+.sidebar_link{
+  display: block;
+  color: rgba(8,19,26,0.6588235294117647);
+  padding: 4px 8px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.main_contant {
+  flex: 12;
+}
+
+.sidebar{
+  margin: 10px;
+}
+
+.search_form_new{
+  width: 100%;
+  border: 1px lightgray solid;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.logo {
+  flex: 1;
+}
+
+.search_form_container {
+  flex: 8;
+}
+
+.search_form_new{
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.header_buttons {
+  flex: 1;
+}
+
+header {
+  margin: 10px;
+}
+
+.input_form{
+    border: 1px white solid;
+}
+
+.input_form:focus{
+   border: 1px white solid;
+   outline: none;
+
+}
+
+.table {
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.setting_btn {
+  heigth: 25px;
+}
+
+.my_page1 {
+  width: 25%;
+  flex: 2;
+}
+
+.my_page2 {
+  flex: 7;
+  margin-top: 30px;
+}
+
+.new_posts {
+  flex: 12;
+  margin:0 15%;
+}
+
+.about {
+  flex: 12;
+}

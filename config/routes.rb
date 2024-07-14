@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get "/search", to: "user/searches#search"
   #get 'posts/show' => 'user/posts#show'
     scope module: :user do
+      
       resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
         resources :post_comments, only: [:create, :destroy]
         resource :favorites, only: [:create, :destroy]
@@ -36,6 +37,8 @@ Rails.application.routes.draw do
           get "followings" => "relationships#followings", as: "followings"
           get "followers" => "relationships#followers", as: "followers"
       end
+    resources :messages, only: [:create]
+    resources :rooms, only: [:create,:show]
     end
 
   namespace :user do
