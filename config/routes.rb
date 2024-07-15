@@ -32,13 +32,14 @@ Rails.application.routes.draw do
         resources :post_comments, only: [:create, :destroy]
         resource :favorites, only: [:create, :destroy]
       end
-      resources :users, only: [:index, :show, :edit, :update] do
+      resources :users, only: [:index, :show, :edit, :update, :destroy] do
         resource :relationships, only: [:create, :destroy]
           get "followings" => "relationships#followings", as: "followings"
           get "followers" => "relationships#followers", as: "followers"
       end
     resources :messages, only: [:create]
     resources :rooms, only: [:create,:show]
+    resources :notifications, only: [:update]
     end
 
   namespace :user do
