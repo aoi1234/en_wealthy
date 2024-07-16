@@ -20,7 +20,7 @@
         <div class="flash-message <%= message_type %>"><%= message %></div>
       <% end %>
       <% if current_user %>
-      <div style="display: flex;"> 
+      <div style="display: flex;">
         <div class="sidebar">
           <%= link_to "HOME", posts_path, class: "sidebar_link"%>
           <%= link_to "マイページ", user_path(current_user), class: "sidebar_link"%>
@@ -35,7 +35,7 @@
           <%= yield %>
       </div>
     </main>
-    
+
     <!-- フッター-->
     <%= render "layouts/footer" %>
   </body>
