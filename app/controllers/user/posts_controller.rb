@@ -19,7 +19,7 @@ class User::PostsController < ApplicationController
       @user = current_user
       @posts = Post.all
       flash.now[:alert] = '投稿が更新されませんでした。'
-      render :index
+      render :new
     end
   end
 

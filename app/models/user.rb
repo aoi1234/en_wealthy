@@ -13,6 +13,9 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  validates :name, presence: true,length: { in: 2..20}
+  validates :email,presence: true,length: { in: 2..20}
+  validates :password,presence: true,length: { in: 2..20}
   
   has_one_attached :profile_image
   
