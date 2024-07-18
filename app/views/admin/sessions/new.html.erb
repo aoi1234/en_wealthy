@@ -1,4 +1,4 @@
-<h2>administrator Log in</h2>
+<h2>ログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -22,5 +22,5 @@
     <%= f.submit "Log in" %>
   </div>
 <% end %>
-
+<div><%=link_to "トップ画面へ", root_path %></div>
 <%= render "admin/shared/links" %>

@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'posts/index'
+    get 'posts/show'
+  end
+  namespace :admin do
+    get 'homes/top'
+  end
   #devise_for :notifications
   #devise_for :relationships
   #devise_for :rooms
@@ -25,6 +32,7 @@ Rails.application.routes.draw do
   root to: 'user/homes#top'
   get 'home/about' => 'user/homes#about', as: 'about'
   get "/search", to: "user/searches#search"
+  
   #get 'posts/show' => 'user/posts#show'
     scope module: :user do
       
@@ -49,6 +57,11 @@ Rails.application.routes.draw do
   #管理者用
   namespace :admin do
     root to: 'homes#top'
+    
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :post_comments, only: [:destroy]
+    end
+    
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

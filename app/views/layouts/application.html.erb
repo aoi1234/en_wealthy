@@ -22,17 +22,28 @@
       <% if current_user %>
       <div style="display: flex;">
         <div class="sidebar">
-          <%= link_to "HOME", posts_path, class: "sidebar_link"%>
-          <%= link_to "マイページ", user_path(current_user), class: "sidebar_link"%>
-          <%= link_to "ポスト",  new_post_path, class: "sidebar_link"%>
-          <%= link_to "ブックマーク", user_path(current_user, from_bookmark: true),  class: "sidebar_link", data: { turbolinks: false } %>
-          <%= link_to "概要", user_homes_about_path, class: "sidebar_link"%>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "sidebar_link"%>
-      <% else %>
-      <% end %>
-
+          <%= link_to raw('<i class="fa-solid fa-house"></i> ホーム'), posts_path, class: "sidebar_link" %>
+          <%= link_to raw('<i class="fa-regular fa-user"></i> ユーザ一覧'), users_path, class: "sidebar_link" %>
+          <%= link_to raw('<i class="fa-regular fa-address-card"></i> マイページ'), user_path(current_user), class: "sidebar_link" %>
+          <%= link_to raw('<i class="fa-regular fa-pen-to-square"></i> ポスト'),  new_post_path, class: "sidebar_link" %>
+          <%= link_to raw('<i class="fa-regular fa-heart"></i> ブックマーク'), user_path(current_user, from_bookmark: true),  class: "sidebar_link", data: { turbolinks: false } %>
+          <%= link_to raw('<i class="fa-solid fa-paperclip"></i> 概要'), user_homes_about_path, class: "sidebar_link" %>
+          <%= link_to raw('<i class="fa-solid fa-right-from-bracket"></i> ログアウト'), destroy_user_session_path, method: :delete, class: "sidebar_link" %>
         </div>
-          <%= yield %>
+      
+      <% elsif admin_signed_in? %>
+      <div style="display: flex;">
+        <div class="a_sidebar">
+          <%= link_to raw('<i class="fa-solid fa-house"></i> ホーム'), admin_root_path, class: "sidebar_link" %>
+          <%= link_to raw('<i class="fa-regular fa-user"></i> ユーザ一覧'), users_path, class: "sidebar_link" %>
+          <%= link_to raw('<i class="fa-solid fa-house"></i> ポスト一覧'), admin_posts_index_path, class: "sidebar_link" %>
+          <%= link_to raw('<i class="fa-solid fa-paperclip"></i> 概要'), user_homes_about_path, class: "sidebar_link" %>
+          <%= link_to raw('<i class="fa-solid fa-right-from-bracket"></i> ログアウト'), destroy_user_session_path, method: :delete, class: "sidebar_link" %>
+        </div>
+      
+      <% end %>
+        <%= yield %>
+      </div>
       </div>
     </main>
 

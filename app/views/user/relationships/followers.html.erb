@@ -1,10 +1,8 @@
-<div class="row">
-  <div style="flex:4;">
-    <h2>フォロワー</h2>
-    <% if @users.exists? %>
-      <%= render "user/users/index", users: @users %>
-    <% else %>
-      <p>ユーザーはいません</p>
-    <% end %>
-  </div>
+<div style="flex:8;">
+  <h2>フォロワー</h2>
+  <% if @users.exists? %>
+    <%= render "user/users/index", users: @users %>
+  <% else %>
+    <p>ユーザーはいません</p>
+  <% end %>
 </div>
