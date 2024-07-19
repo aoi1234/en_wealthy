@@ -1,20 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'posts/index'
-    get 'posts/show'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  #devise_for :notifications
-  #devise_for :relationships
-  #devise_for :rooms
-  #devise_for :messages
-  #devise_for :entries
-  #devise_for :favorites
-  #devise_for :post_comments
-  #devise_for :posts
-
   # 顧客用
   # URL /user/sign_in ...
   devise_for :user,skip: [:passwords], controllers: {
@@ -61,6 +45,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :destroy] do
       resources :post_comments, only: [:destroy]
     end
+    resources :users, only: [:index, :show, :destroy]
     
   end
 

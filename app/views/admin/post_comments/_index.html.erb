@@ -1,0 +1,20 @@
+<table>
+  <tbody>
+    <% post.post_comments.each do |post_comment| %>
+    <tr>
+      <td>
+        <%= link_to user_path(post_comment.user) do %>
+          <%= post_comment.user.name %>
+        <% end %>
+      </td>
+      <td>
+        <div style="margin-left: 5px;"><%= post_comment.comment %></div>
+      </td>
+      <td>
+          <div style="margin-left: 20px;">
+            <%= link_to "削除", post_post_comment_path(post, post_comment), method: :delete, class: "btn btn-secondary", style: "padding: 0.1rem 0.5rem; font-size: 1rem;" %>
+          </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

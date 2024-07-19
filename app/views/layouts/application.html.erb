@@ -35,9 +35,9 @@
       <div style="display: flex;">
         <div class="a_sidebar">
           <%= link_to raw('<i class="fa-solid fa-house"></i> ホーム'), admin_root_path, class: "sidebar_link" %>
-          <%= link_to raw('<i class="fa-regular fa-user"></i> ユーザ一覧'), users_path, class: "sidebar_link" %>
-          <%= link_to raw('<i class="fa-solid fa-house"></i> ポスト一覧'), admin_posts_index_path, class: "sidebar_link" %>
-          <%= link_to raw('<i class="fa-solid fa-paperclip"></i> 概要'), user_homes_about_path, class: "sidebar_link" %>
+          <%= link_to raw('<i class="fa-regular fa-user"></i> ユーザ一覧'), admin_users_path, class: "sidebar_link" %>
+          <%= link_to raw('<i class="fa-solid fa-house"></i> ポスト一覧'), admin_posts_path, class: "sidebar_link" %>
+          <%= link_to raw('<i class="fa-solid fa-paperclip"></i> 概要'), about_path, class: "sidebar_link" %>
           <%= link_to raw('<i class="fa-solid fa-right-from-bracket"></i> ログアウト'), destroy_user_session_path, method: :delete, class: "sidebar_link" %>
         </div>
       
