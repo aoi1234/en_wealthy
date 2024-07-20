@@ -28,7 +28,7 @@ class Post < ApplicationRecord
       Post.where('name LIKE ?', content + '%').or(Post.where('category LIKE ?', content + '%'))
     elsif method == 'backward'
       Post.where('name LIKE ?', '%' + content).or(Post.where('category LIKE ?', '%' + content))
-    else
+    else 
       Post.where('name LIKE ?', '%' + content + '%').or(Post.where('category LIKE ?', '%' + content + '%'))
     end
   end
