@@ -1,1 +1,15 @@
-adad
+<div class="new_posts">
+  <h1>詳細画面</h1>
+    <p>タイトル</p>
+      <span><%= @post.title %></span>
+    <p>本文</p>
+      <span><%= @post.body %></span>
+    <p>業種</p>
+      <span><%= @post.industry %></span>
+    <p>カテゴリー</p>
+      <span><%= @post.category %></span>
+    <td>コメント数： <%= @post.post_comments.count %></td>
+      <div style="margin-top: 10px;">
+        <%= link_to "削除", admin_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-secondary", style: "padding: 0.5rem 0.7rem; font-size: 1rem;" %>
+      </div>
+</div>
