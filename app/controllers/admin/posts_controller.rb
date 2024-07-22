@@ -1,5 +1,5 @@
 class Admin::PostsController < ApplicationController
-  before_action :authenticate_admin!
+  #before_action :authenticate_admin!
   def index
     @post = Post.new
     @posts = Post.all.order(created_at: :desc)

@@ -13,7 +13,7 @@
         <td class="align-middle"><%= user.name %></td>
         <td class="align-middle">フォロー数: <%= user.followings.count %></td>
         <td class="align-middle">フォロワー数: <%= user.followers.count %></td>
-        <td class="align-middle"><%= link_to "プロフィール画面へ", user %></td>
+        <td class="align-middle"><%= link_to "プロフィール画面へ", admin_user_path(user.id) %></td>
       </tr>
     <% end %>
   </tbody>
