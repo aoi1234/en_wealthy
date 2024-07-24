@@ -54,6 +54,18 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.name = "ゲスト"
+      user.password = SecureRandom.urlsafe_base64[0, 20]
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
+    end
+  end
+  def guest?
+    email == 'guest@example.com'
+  end
+
   def self.search_for(content, method)
     if method == 'perfect'
       User.where(name: content)

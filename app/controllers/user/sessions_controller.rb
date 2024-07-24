@@ -10,4 +10,9 @@ class User::SessionsController < Devise::SessionsController
     redirect_to root_path   # ログアウト後のリダイレクト先
   end
   
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to user_path(user)
+  end
 end
