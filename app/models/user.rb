@@ -70,11 +70,14 @@ class User < ApplicationRecord
     if method == 'perfect'
       User.where(name: content)
     elsif method == 'forward'
-      User.where('name LIKE ?', content + '%')
+      User.where('name LIKE ?', "#{content}%")
     elsif method == 'backward'
-      User.where('name LIKE ?', '%' + content)
+      User.where('name LIKE ?', "%#{content}")
+    elsif method == 'partial'
+      User.where('name LIKE ?', "%#{content}%")
     else
-      User.where('name LIKE ?', '%' + content + '%')
+      # Default to partial match if method is not recognized
+      User.where('name LIKE ?', "%#{content}%")
     end
   end
 end
