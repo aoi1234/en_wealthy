@@ -6,7 +6,11 @@
       </div> 
       
       <div class="search_form_container">
-         <%= render "user/searches/form" %>
+        <% if user_signed_in? %>
+          <%= render "user/searches/form" %>
+        <% elsif admin_signed_in? %>
+          <%= render "admin/searches/form" %>
+        <% end %>
       </div>
       
       <div class="header_buttons" style="display: flex; height: 2.45rem;">
@@ -32,10 +36,6 @@
             <% end %>
           </div>
         </li>
-       <% elsif admin_signed_in? %>
-            <!-- 管理者がログインしている時 -->
-            <li class="nav-item"><%= link_to "About", user_homes_about_path, class: "btn btn-outline-warning text-dark"  %></li>
-            <li class="nav-item"><%= link_to "Log out", destroy_admin_session_path, class: "btn btn-outline-warning text-dark" , method: :delete %></li>
         <% end %>
       </div>
       

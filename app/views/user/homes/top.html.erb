@@ -1,4 +1,35 @@
-<!--image tagをいれる-->
-  <div><%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-info btn-block", method: :post %></div>
-  <a href="<%= new_user_registration_path %>" class="btn btn-flat"><span>アカウントの作成</span></a>
-  <a href="<%= new_user_session_path %>" class="btn btn-flat"><span>ログイン</span></a>
+<div class="row" style="justify-content: center; margin-top: 150px;">
+  <div style="width: 40%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div><h1>en:wealthyへようこそ！</h1></div>
+    <div style="margin-top: 10px; font-size: 1.3rem">
+      <p>en:wealthyは自分の技術を見てほしい人、取り組みを応援する人、役に立ちたい人が好きなみんなのための街のような場所。</p>
+      <p>好みのクリエイターやコンテンツを見つけたり、自分の知らないものを知ったりして学べます。</p>
+      <p>いっしょに、情報の輪を広げていきましょう。</p>
+    </div>
+  </div>
+
+  <div style="width: 40%;">
+    <div style="width: 60%; margin: 0 auto;">
+      <h4>新規登録またはログイン</h4>
+      <div style="width: 90%; border: 2px solid gray; border-radius: 10px;">
+
+        <div style="padding: 20px 30px 10px 30px;">
+          <div><%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-info btn-block", method: :post %></div>
+          <div style="margin-top: 10px;"><%= link_to "アカウントの作成", new_user_registration_path, class: "btn btn-info btn-block" %></div>
+        </div>
+        <div style="padding: 10px 30px 20px 30px;">
+          <h4 style="display: flex; align-items: center;">
+            <span style="flex-grow: 1; height: 1px; background-color: black; margin-right: 10px;"></span>
+            アカウントをお持ちの場合
+            <span style="flex-grow: 1; height: 1px; background-color: black; margin-left: 10px;"></span>
+          </h4>
+          <div><%= link_to "ログイン", new_user_session_path, class: "btn btn-info btn-block" %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="text-align: center; margin-top: 10rem;">All rights reserved. ©2024 Aoi Kawata</div>
+</footer>
