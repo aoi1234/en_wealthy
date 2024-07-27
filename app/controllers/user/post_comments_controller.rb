@@ -4,7 +4,7 @@ class User::PostCommentsController < ApplicationController
     comment = current_user.post_comments.new(post_comment_params)
     comment.post_id = post.id
     if comment.save
-      redirect_to request.referer
+      redirect_to request.referer, alert: 'コメントの投稿に成功しました。'
     else
       redirect_to request.referer, alert: 'コメントの投稿に失敗しました。'
     end

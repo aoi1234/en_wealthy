@@ -1,26 +1,48 @@
-<h2>ログイン</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="row" style="justify-content: center; margin-top: 150px;">
+  <div style="width: 40%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div><h1>en:wealthyへようこそ！</h1></div>
+    <div style="margin-top: 10px; font-size: 1.3rem">
+      <p>en:wealthyは自分の技術を見てほしい人、取り組みを応援する人、役に立ちたい人が好きなみんなのための街のような場所。</p>
+      <p>好みのクリエイターやコンテンツを見つけたり、自分の知らないものを知ったりして学べます。</p>
+      <p>いっしょに、情報の輪を広げていきましょう。</p>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-<div><%=link_to "トップ画面へ", root_path %></div>
-<%= render "admin/shared/links" %>
+
+  <div style="width: 40%;">
+    <div style="width: 60%; margin: 0 auto;">
+      <h4>ログインをしてください</h4>
+      <div style="width: 90%; border: 2px solid gray; border-radius: 10px;">
+
+        <div style="padding: 20px 30px 10px 30px;">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.text_field :email, placeholder: "Eメール（２文字以上２０文字以内）", style: "padding: 8px; border: 2px solid gray; border-radius: 5px; margin-bottom: 15px; width: 100%;" %>
+            </div>
+
+            <div class="field">
+              <%= f.password_field :password, placeholder: "パスワード", style: "padding: 8px; border: 2px solid gray; border-radius: 5px; margin-bottom: 15px; width: 100%;" %>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end %>
+
+            <div class="actions">
+              <%= f.submit "Log in" %>
+            </div>
+          <% end %>
+          <%= render "admin/shared/links" %>
+          <div style="margin-top: 10px;"><%= link_to "ユーザ", new_user_session_path %></div>
+          <div style="margin-top: 5px;"><%=link_to "トップ画面へ", root_path %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="text-align: center; margin-top: 10rem;">All rights reserved. ©2024 Aoi Kawata</div>
+</footer>

@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:destroy]
     end
     resources :users, only: [:index, :show, :destroy]
+    get 'is_celebrity/:user_id' => "users#is_celebrity", as: "is_celebrity"
 
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

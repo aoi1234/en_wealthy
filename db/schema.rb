@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 2024_07_06_124558) do
     t.text "introduction"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.boolean "is_celebrity", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

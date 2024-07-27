@@ -1,36 +1,36 @@
 <div class="new_posts">
   <h1>新規ポスト</h1>
+  
   <% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+    <%= @post.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
   <% end %>
   
   <%= form_with model: post do |f| %>
     <div class="f-group">
-      <%= f.label :title %>
-      <%= f.text_field :title, class: "form-control" %>
+      <%= f.label :タイトル %>
+      <%= f.text_field :title, placeholder: "タイトル(1文字以上25文字以内)", style: "padding: 8px; border: 2px solid gray; border-radius: 5px; margin-bottom: 15px; width: 100%;" %>
     </div>
 
     <div class="f-group">
-      <%= f.label :body %>
-      <%= f.text_area :body, class: "form-control", rows: 5 %>
+      <%= f.label :本文 %>
+      <%= f.text_area :body, placeholder: "内容を入力してください(5文字以上150文字以内)", style: "padding: 8px; border: 2px solid gray; border-radius: 5px; margin-bottom: 15px; width: 100%;" %>
     </div>
 
     <div class="f-group">
-      <%= f.label :industry %>
-      <%= f.text_field :industry, class: "form-control" %>
+      <%= f.label :業界 %>
+      <%= f.text_field :industry, placeholder: "業界を入力してください(1文字以上20文字以内)", style: "padding: 8px; border: 2px solid gray; border-radius: 5px; margin-bottom: 15px; width: 100%;" %>
     </div>
 
-    <div class="f-group", style= "margin-bottom: 10px;" >
-      <%= f.label :category %>
-      <%= f.text_field :category, class: "form-control" %>
+    <div class="f-group">
+      <%= f.label :検索カテゴリー %>
+      <%= f.text_field :category, placeholder: "入力は任意です(最大15文字)", style: "padding: 8px; border: 2px solid gray; border-radius: 5px; margin-bottom: 15px; width: 100%;" %>
     </div>
 
     <%= f.submit '投稿', class: "btn btn-primary" %>
   <% end %>
 </div>
-

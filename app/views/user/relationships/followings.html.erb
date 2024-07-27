@@ -1,8 +1,8 @@
-  <div style="flex:8;">
-    <h2>フォロー</h2>
-    <% if @users.exists? %>
-      <%= render "user/users/index", users: @users %>
-    <% else %>
-      <p>ユーザーはいません</p>
-    <% end %>
-  </div>
+<div style="flex:8;">
+  <h2><%= @user.name %>さんのフォロー</h2>
+  <% if @users.exists? %>
+    <%= render "user/users/index", users: @users %>
+  <% else %>
+    <p>ユーザーはいません</p>
+  <% end %>
+</div>

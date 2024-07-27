@@ -1,5 +1,5 @@
 <div style="flex:8;">
-  <h2>フォロワー</h2>
+  <h2><%= @user.name %>さんのフォロワー</h2>
   <% if @users.exists? %>
     <%= render "user/users/index", users: @users %>
   <% else %>

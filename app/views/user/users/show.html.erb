@@ -1,11 +1,15 @@
-<div class="my_page1">
+<div class="my_page1", style="padding: 10px; height: 350px; border: 2px solid gray; border-radius: 10px; margin: 30px 0px 0px 20px;">
   <h4>プロフィール</h4>
-  <%#= image_tag @user.get_profile_image(80,80) %>
+  <%= image_tag @user.get_profile_image(80,80) %>
   <table class="table">
    <tbody>
       <tr>
         <th scope="row">名前</th>
-        <td><%= @user.name %></td>
+        <td><%= @user.name %>
+        <% if @user.is_celebrity %>
+          <i class="fa-solid fa-circle-check" style="color: #17a2b8;"></i>
+        <% end %>
+        </td>
       </tr>
       <tr>
         <th scope="row">自己紹介</th>
@@ -21,7 +25,7 @@
       <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
       <th>フォロワー</th>
     </tr>
-    <div style="display: flex;">
+    <div style="display: flex; margin-top: 10px;">
       <div class="setting_btn">
         <% if current_user != @user || current_user.guest? %>
           <td><%= render "user/relationships/btn", user: @user, options: { class: "follow-link" } %></td>

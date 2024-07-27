@@ -6,10 +6,10 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :notifications, as: :notifiable, dependent: :destroy
 
-  validates :title, length: { in: 1..50 }
-  validates :body, length: { in: 1..150 }
-  validates :industry, length: { in: 1..50 }
-  validates :category, length: { in: 1..50 }
+  validates :title, length: { in: 1..25 }
+  validates :body, length: { in: 5..150 }
+  validates :industry, length: { in: 1..20 }
+  validates :category, length: { maximum: 15 }
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

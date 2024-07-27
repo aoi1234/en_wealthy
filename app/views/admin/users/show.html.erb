@@ -1,11 +1,15 @@
 <div class="my_page1">
   <h4>プロフィール</h4>
-  <%= image_tag @user.get_profile_image(80,80) %>
+    <%= image_tag @user.get_profile_image(80,80) %>
   <table class="table">
    <tbody>
       <tr>
         <th scope="row">名前</th>
-        <td><%= @user.name %></td>
+        <td><%= @user.name %>
+        <% if @user.is_celebrity %>
+          <i class="fa-solid fa-circle-check" style="color: #17a2b8;"></i>
+        <% end %>
+        </td>
       </tr>
       <tr>
         <th scope="row">自己紹介</th>
@@ -21,8 +25,20 @@
       <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
       <th>フォロワー</th>
     </tr>
-    <div style="display: flex;">
-      <div><%= button_to "アカウント削除", user_path(@user), data: { confirm: "本当に削除して宜しいですか?削除するとアカウントの復旧はできません。", turbo_confirm: "本当に削除して宜しいですか？削除するとアカウントの復旧はできません。" }, method: :delete %></div>
+    <div style="margin-top:5px;">
+      <%= button_to "アカウント削除", user_path(@user), data: { confirm: "本当に削除して宜しいですか?削除するとアカウントの復旧はできません。", turbo_confirm: "本当に削除して宜しいですか？削除するとアカウントの復旧はできません。" }, method: :delete %>
+    </div>
+    <div style="margin-top:5px;">
+      <%
+        if @user.is_celebrity
+          now_text = "権限アリ"
+            next_text = "権限ナシ"
+          else
+            now_text = "権限ナシ"
+            next_text = "権限アリ"
+          end
+      %>
+      <%= button_to "スレベリーの切り替え", admin_is_celebrity_path(@user.id), data: { confirm: "現在 : #{now_text} です。", turbo_confirm: "#{next_text} に変更してよいですか？" }, method: :get %>
     </div>
 </div>
 
@@ -43,14 +59,14 @@
           <%= render 'admin/posts/posts', posts: @posts %>
         <% else %>
           <p>投稿が見つかりません。</p>
-        <% end %> 
+        <% end %>
       </div>
       <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
         <% if @favorite_posts.any? %>
           <%= render 'admin/posts/posts', posts: @favorite_posts %>
         <% else %>
           <p>投稿が見つかりません。</p>
-        <% end %> 
+        <% end %>
       </div>
       <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">This is a text of item#3.</div>
     </div>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>en:Wealthy</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -30,7 +29,7 @@
           <%= link_to raw('<i class="fa-solid fa-paperclip"></i> 概要'), user_homes_about_path, class: "sidebar_link" %>
           <%= link_to raw('<i class="fa-solid fa-right-from-bracket"></i> ログアウト'), destroy_user_session_path, method: :delete, class: "sidebar_link" %>
         </div>
-      
+
       <% elsif admin_signed_in? %>
       <div style="display: flex;">
         <div class="a_sidebar">
@@ -40,7 +39,7 @@
           <%= link_to raw('<i class="fa-solid fa-paperclip"></i> 概要'), about_path, class: "sidebar_link" %>
           <%= link_to raw('<i class="fa-solid fa-right-from-bracket"></i> ログアウト'), destroy_user_session_path, method: :delete, class: "sidebar_link" %>
         </div>
-      
+
       <% end %>
         <%= yield %>
       </div>

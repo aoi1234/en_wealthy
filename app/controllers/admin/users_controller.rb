@@ -16,4 +16,16 @@ class Admin::UsersController < ApplicationController
     user.destroy
     redirect_to admin_users_path
   end
+
+  def is_celebrity
+    user = User.find(params[:user_id])
+      if user.is_celebrity == true
+        user.is_celebrity = false
+      else
+        user.is_celebrity = true
+      end
+    user.password = user.password
+    user.save!
+    redirect_to admin_user_path(params[:user_id])
+  end
 end

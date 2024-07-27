@@ -31,6 +31,7 @@ class User::UsersController < ApplicationController
   end
 
   def edit
+    redirect_to current_user if current_user.guest?
     @user = User.find(params[:id])
   end
 
@@ -39,7 +40,7 @@ class User::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user, notice: '更新しました!'
     else
-      render edit
+      render :edit
     end
   end
 

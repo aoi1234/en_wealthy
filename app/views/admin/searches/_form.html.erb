@@ -1,12 +1,38 @@
 <% if admin_signed_in? %>
   <%= form_with url: admin_searches_search_path, method: :get, local: true do |f| %>
-    <div class="input-group" style="width: 35rem; margin: 0 auto;">
+    <div class="input-group" style="width: 35rem; margin: 0 auto; margin-top: 30px;">
       <%= f.text_field :keyword, value: params[:keyword], class: "form-control", placeholder: "キーワードやクリエイターで検索", aria_label: "キーワードやクリエイターで検索" %>
-      <%= f.select :model, options_for_select({"User" => "user", "Post" => "post"}, params[:model]) %>
-      <%= f.select :method, options_for_select({"完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial"}, params[:method]) %>
-      <%= button_tag type: "submit", class: "btn btn-outline-secondary" do %>
+      <%= f.select :model, options_for_select({"User" => "user", "Post" => "post"}, params[:model]), class: "form-control custom-gray-select" %>
+      <%= f.select :method, options_for_select({"完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial"}, params[:method]), class: "form-control custom-gray-select" %>
+      <%= button_tag type: "submit", class: "btn custom-gray-button" do %>
         <i class="fa-solid fa-magnifying-glass"></i> 検索
       <% end %>
     </div>
   <% end %>
 <% end %>
+
+<style>
+.custom-gray-button {
+  background-color: #ffffff; /* グレー色 */
+  color: #6c757d; /* ボタンのテキスト色 */
+  border: 1px solid #6c757d; /* ボタンの枠線の色 */
+}
+
+.custom-gray-button:hover {
+  background-color: #17a2b8; /* ホバー時の色 */
+  border-color: #ffffff; /* ホバー時の枠線の色 */
+  color: #ffffff;
+}
+
+/* グレー色の select ボックス */
+.custom-gray-select {
+  background-color: #ffffff; /* グレー色の背景 */
+  border-color: ##6c757d; /* 枠線の色 */
+  color: ##6c757d; /* テキストの色 */
+}
+
+.custom-gray-select:click {
+  border-color: primary; /* フォーカス時の枠線の色 */
+  box-shadow: 0 0 0 .2rem rgba(0, 0, 0, 0.1); /* フォーカス時の影 */
+}
+</style>
