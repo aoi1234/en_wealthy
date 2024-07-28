@@ -1,4 +1,4 @@
-<div class="my_page1">
+<div class="my_page1", style="padding: 10px; height: 350px; border: 2px solid gray; border-radius: 10px; margin: 30px 0px 0px 100px;">
   <h4>プロフィール</h4>
     <%= image_tag @user.get_profile_image(80,80) %>
   <table class="table">
@@ -18,15 +18,15 @@
     </tbody>
   </table>
     <tr>
-      <th><%= link_to @user.followings.count, user_followings_path(@user) %></th>
+      <th><%= @user.followings.count %></th>
       <th>フォロー</th>
     </tr>
     <tr>
-      <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
+      <th><%= @user.followers.count %></th>
       <th>フォロワー</th>
     </tr>
     <div style="margin-top:5px;">
-      <%= button_to "アカウント削除", user_path(@user), data: { confirm: "本当に削除して宜しいですか?削除するとアカウントの復旧はできません。", turbo_confirm: "本当に削除して宜しいですか？削除するとアカウントの復旧はできません。" }, method: :delete %>
+      <%= button_to "アカウント削除", admin_user_path(@user), data: { confirm: "本当に削除して宜しいですか?削除するとアカウントの復旧はできません。", turbo_confirm: "本当に削除して宜しいですか？削除するとアカウントの復旧はできません。" }, method: :delete %>
     </div>
     <div style="margin-top:5px;">
       <%
@@ -49,7 +49,7 @@
         <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">投稿一覧</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">Favorites</a>
+        <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">いいね一覧</a>
       </li>
     </ul>
   </div>
@@ -58,20 +58,18 @@
         <% if @posts.any? %>
           <%= render 'admin/posts/posts', posts: @posts %>
         <% else %>
-          <p>投稿が見つかりません。</p>
+          <div style="width: 200px;margin: 0 auto; margin-top: 90px;">投稿が見つかりません。</div>
         <% end %>
       </div>
       <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
         <% if @favorite_posts.any? %>
           <%= render 'admin/posts/posts', posts: @favorite_posts %>
         <% else %>
-          <p>投稿が見つかりません。</p>
+          <div style="width: 200px;margin: 0 auto; margin-top: 90px;">投稿が見つかりません。</div>
         <% end %>
       </div>
-      <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">This is a text of item#3.</div>
     </div>
 </div>
-
 
 <% if params[:from_bookmark].present? %>
   <script>

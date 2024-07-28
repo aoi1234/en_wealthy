@@ -1,5 +1,5 @@
 <div class="row" style="justify-content: center; margin-top: 150px;">
-  <div style="width: 40%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <div style="width: 40%; display: flex; flex-direction: column; justify-content: center; align-items: center; height:270px;">
     <div><h1>en:wealthyへようこそ！</h1></div>
     <div style="margin-top: 10px; font-size: 1.3rem">
       <p>en:wealthyは自分の技術を見てほしい人、取り組みを応援する人、役に立ちたい人が好きなみんなのための街のような場所。</p>
@@ -26,12 +26,12 @@
             <% if devise_mapping.rememberable? %>
               <div class="field">
                 <%= f.check_box :remember_me %>
-                <%= f.label :remember_me %>
+                <%= f.label :確認 %>
               </div>
             <% end %>
 
             <div class="actions">
-              <%= f.submit "Log in" %>
+              <%= f.submit "ログイン", style: "color: white; padding: 8px; border-radius: 10px; width: 100%; border: 3px white solid;; background-color: #4CB1FF;"%>
             </div>
           <% end %>
           <%= render "admin/shared/links" %>

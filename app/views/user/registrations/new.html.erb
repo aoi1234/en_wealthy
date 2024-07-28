@@ -1,35 +1,57 @@
-<h2>新規登録</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "user/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+<div class="row" style="justify-content: center; margin-top: 150px;">
+  <div style="width: 40%; display: flex; flex-direction: column; justify-content: center; align-items: center; height:270px;">
+    <div><h1>en:wealthyへようこそ！</h1></div>
+    <div style="margin-top: 10px; font-size: 1.3rem">
+      <p>en:wealthyは自分の技術を見てほしい人、取り組みを応援する人、役に立ちたい人が好きなみんなのための街のような場所。</p>
+      <p>好みのクリエイターやコンテンツを見つけたり、自分の知らないものを知ったりして学べます。</p>
+      <p>いっしょに、情報の輪を広げていきましょう。</p>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <div style="width: 40%;">
+    <div style="width: 60%; margin: 0 auto;">
+      <h4>新規登録をしてください</h4>
+      <div style="width: 90%; border: 2px solid gray; border-radius: 10px;">
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+        <div style="padding: 20px 30px 20px 30px;">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.text_field :name, placeholder: "アカウント名（2文字以上20文字以内）", style: "padding: 8px; border: 2px solid gray; border-radius: 5px; margin-bottom: 15px; width: 100%;" %>
+            </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+            <div class="field">
+              <%= f.text_field :email, placeholder: "Eメール（2文字以上20文字以内）", style: "padding: 8px; border: 2px solid gray; border-radius: 5px; margin-bottom: 5px; width: 100%;" %>
+            </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+            <div class="field">
+              <% if @minimum_password_length %><% end %>
+              <%= f.label :パスワード %>
+              <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード（5文字以上）", style: "padding: 8px; border: 2px solid gray; border-radius: 5px; margin-bottom: 5px; width: 100%;" %>
+            </div>
 
-<%= render "user/shared/links" %>
-<div><%= link_to "トップ画面に戻る", root_path %></div>
+            <div class="field">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード（確認）", style: "padding: 8px; border: 2px solid gray; border-radius: 5px; margin-bottom: 15px; width: 100%;" %>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :確認 %>
+              </div>
+            <% end %>
+
+            <div class="actions">
+              <%= f.submit "登録", style: "color: white; padding: 8px; border-radius: 10px; width: 100%; border: 3px white solid;; background-color: #4CB1FF;"%>
+            </div>
+          <% end %>
+          <div style="margin: 5px 0px;"><%=link_to "トップ画面へ", root_path %></div>
+          <%= render "user/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="text-align: center; margin-top: 10rem;">All rights reserved. ©2024 Aoi Kawata</div>
+</footer>

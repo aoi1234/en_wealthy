@@ -1,21 +1,33 @@
 <div class="new_posts">
   <h1>詳細画面</h1>
-    <p>タイトル</p>
-      <span><%= @post.title %></span>
-    <p>本文</p>
-      <span><%= @post.body %></span>
-    <p>業種</p>
-      <span><%= @post.industry %></span>
-    <p>カテゴリー</p>
-      <span><%= @post.category %></span>
-    <span id="favorite_btn_<%= @post.id %>"><%= render "user/favorites/btn", post: @post %></span>
-    <td>コメント数： <%= @post.post_comments.count %></td>
-    <% if @post.user == current_user %>
-      <div style="margin-top: 10px;">
-        <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-secondary", style: "padding: 0.5rem 0.7rem; font-size: 1rem;" %>
-        <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-secondary", style: "padding: 0.5rem 0.7rem; font-size: 1rem;" %>
+        <div class="card w-10 mx-auto mt-4 shadow-lg">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-2">
+            <% if @user %>
+              <%= image_tag @user.get_profile_image(100,100), class: "mt-3 rounded-circle" %>
+            <% else %>
+              <%= image_tag 'no_image.jpg' %>
+            <% end %>
+            <div style="margin-top:10px; height:75px;"><i class="fas fa-user"></i> By </br><%= @post.user.name %></div>
+          </div>
+          <div class="col-10">
+            <p class="card-text">タイトル：<%= @post.title %></p>
+            <p class="card-text">本文：<%= @post.body %></p>
+            <p class="card-text">業界：<%= @post.industry %></p>
+            <p class="card-text">カテゴリー：<%= @post.category %></p>
+            <span id="favorite_btn_<%= @post.id %>"><%= render "user/favorites/btn", post: @post %>  |  </span>
+            <span><i class="fa-solid fa-comment"></i> <%= @post.post_comments.count %> 件</span>
+            <% if @post.user == current_user %>
+              <div style="margin-top: 10px;">
+                <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-secondary", style: "padding: 0.5rem 0.7rem; font-size: 1rem;" %>
+                <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-secondary", style: "padding: 0.5rem 0.7rem; font-size: 1rem;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
-    <% end %>
+    </div>
   <div style="margin-top: 10px">
     <%= render "user/post_comments/index", post: @post %>
     <%= render "user/post_comments/form", post: @post, post_comment: @post_comment %>

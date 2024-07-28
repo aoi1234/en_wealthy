@@ -1,15 +1,28 @@
 <div class="new_posts">
   <h1>詳細画面</h1>
-    <p>タイトル</p>
-      <span><%= @post.title %></span>
-    <p>本文</p>
-      <span><%= @post.body %></span>
-    <p>業種</p>
-      <span><%= @post.industry %></span>
-    <p>カテゴリー</p>
-      <span><%= @post.category %></span>
-    <td>コメント数： <%= @post.post_comments.count %></td>
+    <div class="card w-10 mx-auto mt-4 shadow-lg">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-2">
+            <% if @user %>
+              <%= image_tag @user.get_profile_image(100,100), class: "mt-3 rounded-circle" %>
+            <% else %>
+              <%= image_tag 'no_image.jpg' %>
+            <% end %>
+            <div style="margin-top:10px; height:75px;"><i class="fas fa-user"></i> By </br><%= @post.user.name %></div>
+          </div>
+          <div class="col-10">
+            <p class="card-text">タイトル：<%= @post.title %></p>
+            <p class="card-text">本文：<%= @post.body %></p>
+            <p class="card-text">業界：<%= @post.industry %></p>
+            <p class="card-text">カテゴリー：<%= @post.category %></p>
+            <span><i class="fa-solid fa-comment"></i> <%= @post.post_comments.count %> 件</span>
+          </div>
+        </div>
+      </div>
+    </div>
       <div style="margin-top: 10px;">
         <%= link_to "削除", admin_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-secondary", style: "padding: 0.5rem 0.7rem; font-size: 1rem;" %>
       </div>
+    <div><%= render 'admin/post_comments/index', post: @post %></div>
 </div>

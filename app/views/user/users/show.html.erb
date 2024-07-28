@@ -1,4 +1,4 @@
-<div class="my_page1", style="padding: 10px; height: 350px; border: 2px solid gray; border-radius: 10px; margin: 30px 0px 0px 20px;">
+<div class="my_page1", style="padding: 10px; height: 350px; border: 2px solid gray; border-radius: 10px; margin: 30px 0px 0px 100px;">
   <h4>プロフィール</h4>
   <%= image_tag @user.get_profile_image(80,80) %>
   <table class="table">
@@ -61,7 +61,7 @@
         <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">投稿一覧</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">Favorites</a>
+        <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">いいね一覧</a>
       </li>
     </ul>
   </div>
@@ -71,16 +71,15 @@
           <%= render 'user/posts/posts', posts: @posts %>
         <% else %>
           <div style="width: 200px;margin: 0 auto; margin-top: 90px;">投稿が見つかりません。</div>
-        <% end %> 
+        <% end %>
       </div>
       <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
         <% if @favorite_posts.any? %>
           <%= render 'user/posts/posts', posts: @favorite_posts %>
         <% else %>
-          <p>投稿が見つかりません。</p>
-        <% end %> 
+          <p style="width: 200px;margin: 0 auto; margin-top: 90px;">投稿が見つかりません。</p>
+        <% end %>
       </div>
-      <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">This is a text of item#3.</div>
     </div>
 </div>
 

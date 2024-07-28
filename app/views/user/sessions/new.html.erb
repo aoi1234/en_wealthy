@@ -1,5 +1,5 @@
 <div class="row" style="justify-content: center; margin-top: 150px;">
-  <div style="width: 40%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <div style="width: 40%; display: flex; flex-direction: column; justify-content: center; align-items: center; height:270px;">
     <div><h1>en:wealthyへようこそ！</h1></div>
     <div style="margin-top: 10px; font-size: 1.3rem">
       <p>en:wealthyは自分の技術を見てほしい人、取り組みを応援する人、役に立ちたい人が好きなみんなのための街のような場所。</p>
@@ -18,20 +18,20 @@
             <div class="field">
               <%= f.text_field :name, placeholder: "アカウント名（２文字以上２０文字以内）", style: "padding: 8px; border: 2px solid gray; border-radius: 5px; margin-bottom: 15px; width: 100%;" %>
             </div>
-          
+
             <div class="field">
               <%= f.password_field :password, placeholder: "パスワード", style: "padding: 8px; border: 2px solid gray; border-radius: 5px; margin-bottom: 15px; width: 100%;" %>
             </div>
-          
+
             <% if devise_mapping.rememberable? %>
               <div class="field">
                 <%= f.check_box :remember_me %>
-                <%= f.label :remember_me %>
+                <%= f.label :確認 %>
               </div>
             <% end %>
-          
+
             <div class="actions">
-              <%= f.submit "Log in" %>
+              <%= f.submit "ログイン", style: "color: white; padding: 8px; border-radius: 10px; width: 100%; border: 3px white solid;; background-color: #4CB1FF;"%>
             </div>
           <% end %>
           <div style="margin-top: 10px;"><%= link_to "管理者", new_admin_session_path %></div>
