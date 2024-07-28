@@ -14,7 +14,7 @@
       <div style="width: 90%; border: 2px solid gray; border-radius: 10px;">
 
         <div style="padding: 20px 30px 20px 30px;">
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= form_for(resource, as: resource_name, url: user_registration_path()) do |f| %>
             <div class="field">
               <%= f.text_field :name, placeholder: "アカウント名（2文字以上20文字以内）", style: "padding: 8px; border: 2px solid gray; border-radius: 5px; margin-bottom: 15px; width: 100%;" %>
             </div>

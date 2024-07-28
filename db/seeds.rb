@@ -9,3 +9,20 @@ Admin.create!(
    email: 'admin@admin',
    password: 'aaaaaa'
 )
+
+users_attributes = [
+      { name: "user1",
+        email: "user1@test.com",
+        password: "password",
+        introduction: "よろしくね！",
+        is_celebrity: true },
+      { name: "user2",
+        email: "user2@test.com",
+        password: "password",
+        introduction: "よい一日を！"},
+      { name: "user3",
+        email: "user3@test.com",
+        password: "password",
+        introduction: "よろしく！" }
+  ]
+
